@@ -1,2 +1,6 @@
 recruitment_task/target
+target/
+
 .idea
+*.iml
+secrets.yaml
