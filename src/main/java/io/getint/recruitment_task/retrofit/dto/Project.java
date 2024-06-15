@@ -1,10 +1,10 @@
-package io.getint.recruitment_task.retrofit;
+package io.getint.recruitment_task.retrofit.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
-public class ProjectDto {
+@Data
+public class Project {
 
     @JsonProperty
     private String id;

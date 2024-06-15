@@ -3,7 +3,6 @@ package io.getint.recruitment_task.retrofit;
 import io.getint.recruitment_task.configuration.PropertiesConfig;
 import lombok.AllArgsConstructor;
 import okhttp3.OkHttpClient;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import retrofit2.Retrofit;
