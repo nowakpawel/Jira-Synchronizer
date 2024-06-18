@@ -1,7 +1,8 @@
 package io.getint.recruitment_task.retrofit;
 
-import io.getint.recruitment_task.retrofit.dto.Fields;
+import io.getint.recruitment_task.retrofit.dto.Filter;
 import io.getint.recruitment_task.retrofit.dto.Issue;
+import io.getint.recruitment_task.retrofit.dto.IssuesFromProject;
 import io.getint.recruitment_task.retrofit.dto.Project;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -18,5 +19,8 @@ public interface AtlassianClient {
 
     @POST("/rest/api/3/issue")
     Call<Void> createIssue(@Header("Authorization") String auth, @Body Issue issue);
+
+    @POST("/rest/api/3/search/id")
+    Call<IssuesFromProject> getIssuesFromProject(@Header("Authorization") String auth, @Body Filter filter);
 
 }

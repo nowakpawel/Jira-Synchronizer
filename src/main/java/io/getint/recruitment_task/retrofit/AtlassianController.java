@@ -1,11 +1,13 @@
 package io.getint.recruitment_task.retrofit;
 
-import io.getint.recruitment_task.retrofit.dto.Fields;
+
 import io.getint.recruitment_task.retrofit.dto.Issue;
+import io.getint.recruitment_task.retrofit.dto.IssuesFromProject;
 import io.getint.recruitment_task.retrofit.dto.Project;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import retrofit2.http.PUT;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,5 +28,16 @@ public class AtlassianController {
     @PostMapping("/create-issue")
     public String createIssue(@RequestBody Issue issue) throws IOException {
         return service.createIssue(issue);
+    }
+
+    /**
+     *
+     * @param sourceProject name of the source project
+     * @param destinationProject name of the destination project
+     * @return true - if success, false if failed
+     */
+    @GetMapping("/move-issues/from/{source}/to/{destination}")
+    public IssuesFromProject moveIssuesToProject(@PathVariable("source") String sourceProject, @PathVariable("destination") String destinationProject) throws IOException {
+        return service.moveIssues(sourceProject);
     }
 }

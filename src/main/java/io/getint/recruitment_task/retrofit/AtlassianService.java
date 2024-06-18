@@ -1,10 +1,9 @@
 package io.getint.recruitment_task.retrofit;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import io.getint.recruitment_task.configuration.PropertiesConfig;
-import io.getint.recruitment_task.retrofit.dto.Fields;
-import io.getint.recruitment_task.retrofit.dto.Issue;
-import io.getint.recruitment_task.retrofit.dto.Project;
+import io.getint.recruitment_task.retrofit.dto.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,6 @@ public class AtlassianService {
 
     public List<Project> getProjects() throws IOException {
         String authentication = getAuthentication();
-
         Response<List<Project>> response = client.getAllProjects(authentication).execute();
 
         if (response.isSuccessful()) {
@@ -44,6 +42,24 @@ public class AtlassianService {
         } else {
             throw new RuntimeException("Could not create issue %s".formatted(issue.toString()));
         }
+    }
+
+    public IssuesFromProject moveIssues(String sourceProject) throws IOException {
+        String authentication = getAuthentication();
+
+
+        Filter filter = new Filter();
+        filter.setJql("project = %s".formatted(sourceProject));
+
+        Response<IssuesFromProject> response = client.getIssuesFromProject(authentication, filter).execute();
+
+        if (response.isSuccessful()) {
+            return response.body();
+        } else {
+            throw new RuntimeException("Could not found ");
+        }
+
+
     }
 
 
