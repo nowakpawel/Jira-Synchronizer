@@ -37,7 +37,7 @@ public class AtlassianController {
      * @return true - if success, false if failed
      */
     @GetMapping("/move-issues/from/{source}/to/{destination}")
-    public IssuesFromProject moveIssuesToProject(@PathVariable("source") String sourceProject, @PathVariable("destination") String destinationProject) throws IOException {
-        return service.moveIssues(sourceProject);
+    public List<Issue> moveIssuesToProject(@PathVariable("source") String sourceProject, @PathVariable("destination") String destinationProject) throws IOException {
+        return service.moveIssues(sourceProject, destinationProject);
     }
 }

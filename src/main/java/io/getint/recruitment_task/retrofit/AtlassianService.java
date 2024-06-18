@@ -1,7 +1,5 @@
 package io.getint.recruitment_task.retrofit;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import io.getint.recruitment_task.configuration.PropertiesConfig;
 import io.getint.recruitment_task.retrofit.dto.*;
 import lombok.RequiredArgsConstructor;
@@ -44,25 +42,41 @@ public class AtlassianService {
         }
     }
 
-    public IssuesFromProject moveIssues(String sourceProject) throws IOException {
+    public List<Issue> moveIssues(String sourceProject, String destinationProjectName) throws IOException {
         String authentication = getAuthentication();
-
 
         Filter filter = new Filter();
         filter.setJql("project = %s".formatted(sourceProject));
 
-        Response<IssuesFromProject> response = client.getIssuesFromProject(authentication, filter).execute();
+        Project destinationProject = new Project();
+        Response<Values> projectResponse = client.getProjectDetails(authentication, destinationProjectName).execute();
 
-        if (response.isSuccessful()) {
-            return response.body();
-        } else {
-            throw new RuntimeException("Could not found ");
+        destinationProject.setId(projectResponse.body().getValues().get(0).getId());
+        destinationProject.setKey(projectResponse.body().getValues().get(0).getKey());
+        destinationProject.setName(projectResponse.body().getValues().get(0).getName());
+
+        Response<IssuesFromProject> issuesFromProjectResponse = client.getIssuesFromProject(authentication, filter).execute();
+
+        List<Integer> issueIds = issuesFromProjectResponse.body().getIssueIds();
+
+        for (Integer id: issueIds) {
+            Fields newFields = new Fields();
+            Response<Issue> issueResponse = client.getIssueDetails(authentication, id).execute();
+
+            newFields.setIssuetype(issueResponse.body().getFields().getIssuetype());
+            newFields.setSummary(issueResponse.body().getFields().getSummary());
+            newFields.setProject(destinationProject);
+
+            Issue movedIssue = new Issue();
+            movedIssue.setFields(newFields);
+
+            client.createIssue(authentication, movedIssue).execute();
+
+            client.deleteIssue(authentication, id).execute();
         }
 
-
+        return null;
     }
-
-
 
     private String getAuthentication() {
         String base = propertiesConfig.getUserName() + ":" + propertiesConfig.getApiKey();
