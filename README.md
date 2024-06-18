@@ -1,10 +1,10 @@
 # Intro
-Client for managing task in Jira.
+Client for managing tasks in Jira.
 
 # Endpoints
-- `[GET][https://domain.atlassian.net]/projects` - Get all Projects from instance
-- `[POST][https://domain.atlassian.net]/create-issue` - Create new issue
-- `[GET][https://domain.atlassian.net]//move-issues/from/{source}/to/{destination}` - move 5 issues from [source]project to [destination]project (**use names**)
+- `[GET][https://domain.atlassian.net]/projects` - Get all Projects from instance.
+- `[POST][https://domain.atlassian.net]/create-issue` - Create new issue.
+- `[GET][https://domain.atlassian.net]//move-issues/from/{source}/to/{destination}` - move 5 issues from [source]project to [destination]project (**use names**).
 
 # Todo:
 
