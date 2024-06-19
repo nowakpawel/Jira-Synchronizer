@@ -65,6 +65,7 @@ public class AtlassianService {
 
             newFields.setIssuetype(issueResponse.body().getFields().getIssuetype());
             newFields.setSummary(issueResponse.body().getFields().getSummary());
+            newFields.setPriority(issueResponse.body().getFields().getPriority());
             newFields.setProject(destinationProject);
 
             Issue movedIssue = new Issue();
