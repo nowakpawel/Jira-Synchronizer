@@ -9,6 +9,7 @@ Client for managing tasks in Jira.
 # Todo:
 
 - [ ] Do not import wildcard (AtlassianClient.java)
+- [ ] Add Configuration section in README
 - [x] Move Issue from one project to another
 - [x] Import Summary (title)
 - [ ] Import  Issue Description
