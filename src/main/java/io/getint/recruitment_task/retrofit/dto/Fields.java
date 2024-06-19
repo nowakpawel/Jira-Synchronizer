@@ -11,7 +11,7 @@ public class Fields {
     private String summary;
     @JsonProperty
     private IssueType issuetype;
-
-    //TODO: Description
+    @JsonProperty
+    private Priority priority;
 
 }
