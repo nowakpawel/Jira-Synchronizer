@@ -13,7 +13,7 @@ Client for managing tasks in Jira.
 - [x] Move Issue from one project to another
 - [x] Import Summary (title)
 - [ ] Import  Issue Description
-- [ ] Import priority
+- [x] Import priority
 - [ ] Import comments
 - [ ] Write test for Service and Controller
 - [ ] Refactor service's moveIssue method
