@@ -2,12 +2,10 @@ package io.getint.recruitment_task.retrofit;
 
 
 import io.getint.recruitment_task.retrofit.dto.Issue;
-import io.getint.recruitment_task.retrofit.dto.IssuesFromProject;
 import io.getint.recruitment_task.retrofit.dto.Project;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import retrofit2.http.PUT;
 
 import java.io.IOException;
 import java.util.List;
